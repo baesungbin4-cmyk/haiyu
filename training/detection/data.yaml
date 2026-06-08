@@ -1,0 +1,101 @@
+# YOLO-format dataset manifest for Haiyu vessel/port detection training.
+# This file is a placeholder manifest. Public or synthetic data must remain
+# marked as placeholder until a reviewed dataset split is supplied locally.
+
+path: ../../datasets/haiyu_yolo_placeholder
+train: images/train
+val: images/val
+test: images/test
+
+nc: 5
+names:
+  0: vessel
+  1: buoy
+  2: dock
+  3: shoreline
+  4: floating_obstacle
+
+dataset_status:
+  source: public_or_synthetic_placeholder
+  candidate_sources:
+    - name: ShipsEar
+      url: https://shipshear.uvigo.es/
+      type: public
+      description: Underwater and surface vessel acoustic/visual recordings
+      status: "拟开展/未验证 — not yet integrated"
+    - name: SeaShips
+      url: https://github.com/jiaming-wang/SeaShips
+      type: public
+      description: Large-scale vessel detection dataset (7000+ images, 6 classes)
+      status: "拟开展/未验证 — not yet integrated"
+    - name: Singapore Maritime Dataset (SMD)
+      type: public
+      description: On-shore pan-tilt-zoom maritime surveillance videos
+      status: "拟开展/未验证 — not yet integrated"
+    - name: ABOShips / Seaships 7000
+      type: public
+      description: COCO-format vessel detection with bounding boxes
+      status: "拟开展/未验证 — not yet integrated"
+    - name: Synthetic data generators
+      type: synthetic
+      description: Blender/Unreal Engine maritime scene synthesis pipeline
+      status: "拟开展/未验证 — placeholder; generator pipeline not yet built"
+    - name: Custom port-surveillance footage
+      type: proprietary
+      description: On-site camera recordings (to be annotated)
+      status: "拟开展/未验证 — acquisition pending"
+  real_port_validation: false
+  label_quality: "拟开展/未验证"
+  metrics_status: "拟开展/未验证"
+  note: >
+    All sources listed above are candidates for the training pipeline.  None
+    have been ingested as of this writing.  Each source must be reviewed for
+    license compatibility before use.  Do not report mAP or latency from this
+    manifest until measured on a locally reviewed and validated split.
+
+required_yolo_layout:
+  images:
+    train: images/train
+    val: images/val
+    test: images/test
+  labels:
+    train: labels/train
+    val: labels/val
+    test: labels/test
+  label_format: "class_id x_center y_center width height, normalized [0,1]"
+
+scenarios:
+  - id: clear_day
+    status: "拟开展/未验证"
+    description: clear daylight port approach
+    candidate_sources: [SeaShips, SMD, custom_port_footage]
+  - id: night_low_light
+    status: "拟开展/未验证"
+    description: nighttime and weak-vision frames
+    candidate_sources: [synthetic_night_augmentation, custom_port_footage]
+  - id: fog_haze
+    status: "拟开展/未验证"
+    description: fog, haze, and low contrast
+    candidate_sources: [synthetic_fog_augmentation, RESIDE_dataset]
+  - id: rain
+    status: "拟开展/未验证"
+    description: rain streaks, wet deck, and reflection noise
+    candidate_sources: [synthetic_rain_augmentation, Rain1200_dataset]
+  - id: backlight_glare
+    status: "拟开展/未验证"
+    description: sunrise, sunset, glare, and overexposed water
+    candidate_sources: [synthetic_glare_augmentation, custom_port_footage]
+  - id: port_clutter
+    status: "拟开展/未验证"
+    description: cranes, docks, ropes, and dense background objects
+    candidate_sources: [SMD, custom_port_footage, ShipsEar]
+  - id: occlusion
+    status: "拟开展/未验证"
+    description: partial vessel occlusion and crossing targets
+    candidate_sources: [SeaShips, synthetic_occlusion_augmentation]
+  - id: long_range_small_targets
+    status: "拟开展/未验证"
+    description: far-field small vessels and floating obstacles
+    candidate_sources: [ABOShips, Seaships7000, custom_long_range_footage]
+
+download: null
