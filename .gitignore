@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.coverage
+coverage/
+htmlcov/
+
+# Node / frontend
+node_modules/
+build/
+dist/
+frontend/dist/
+.vite/
+
+# Runtime data
+edge/cache/prediction_logs.json
+edge/cache/prediction_logs.tmp
+*.log
+
+# Local datasets, model weights, and training/export artifacts
+datasets/
+weights/
+runs/
+wandb/
+*.pt
+*.pth
+*.onnx
+*.rknn
+*.engine
+*.npy
+*.npz
+
+# Secrets and local config
+.env
+.env.*
+!.env.example
+*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

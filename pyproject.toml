@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "haiyu"
+version = "0.1.0"
+description = "海御·智慧物联网安全平台"
+requires-python = ">=3.10"
+license = {text = "AGPL-3.0-only"}
+
+[tool.setuptools.packages.find]
+include = ["edge*", "training*", "cloud*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
